@@ -82,18 +82,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf9" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0b0a" },
-  ],
+  themeColor: "#fafaf9",
   width: "device-width",
   initialScale: 1,
 };
 
-/** Sahifa chizilgunicha mavzuni qo'yadi — «oq chaqnash» bo'lmaydi. */
+/**
+ * Sahifa chizilgunicha mavzuni qo'yadi — «oq chaqnash» bo'lmaydi.
+ * Standart holat — yorug' mavzu; tizim sozlamasi hisobga olinmaydi.
+ * Faqat foydalanuvchi o'zi qorong'i rejimga o'tgan bo'lsa, tanlovi saqlanadi.
+ */
 const THEME_SCRIPT = `(function(){try{
-var s=localStorage.getItem('ai-food-safety-theme');
-var t=s||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+var t=localStorage.getItem('ai-food-safety-theme')==='dark'?'dark':'light';
 document.documentElement.setAttribute('data-theme',t);
 document.documentElement.style.colorScheme=t;
 }catch(e){}})();`;

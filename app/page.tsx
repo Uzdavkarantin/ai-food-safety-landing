@@ -8,6 +8,7 @@ import PointerFX from "@/components/PointerFX";
 import Reveal from "@/components/Reveal";
 import Services from "@/components/Services";
 import Stats from "@/components/Stats";
+import Underline from "@/components/Underline";
 import {
   CHAIN_STEPS,
   HERO_SERVICES,
@@ -115,7 +116,11 @@ export default function Page() {
                 Oziq-ovqat xavfsizligi qo'mitasi
               </span>
               <h1 id="hero-h" className="hero__title">
-                AI Food Safety
+                AI Food{" "}
+                <span className="marked">
+                  Safety
+                  <Underline />
+                </span>
               </h1>
               <p className="hero__lead">{SITE.tagline}</p>
               <div className="hero__cta">
