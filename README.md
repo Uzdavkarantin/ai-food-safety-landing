@@ -1,4 +1,4 @@
-# AI Food Safety — `ai.karantin.uz`
+# AI Food Safety — `ai.food-safety.uz`
 
 Oziq-ovqat mahsulotlari xavfsizligi qo'mitasining sun'iy intellekt portali uchun
 bosh sahifa. Claude Design'dagi `AI Xavfsizlik Landing.dc.html` maketi Next.js

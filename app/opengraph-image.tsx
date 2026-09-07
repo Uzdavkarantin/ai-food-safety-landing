@@ -28,7 +28,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 104, fontWeight: 700, letterSpacing: -3 }}>AI Food Safety</div>
           <div style={{ fontSize: 36, color: "#9ba29c", maxWidth: 900 }}>{SITE.tagline}</div>
         </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#9ba29c" }}>ai.karantin.uz</div>
+        <div style={{ display: "flex", fontSize: 28, color: "#9ba29c" }}>{SITE.url.replace("https://", "")}</div>
       </div>
     ),
     size,

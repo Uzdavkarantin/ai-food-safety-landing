@@ -314,7 +314,7 @@ export const SITE = {
   name: "AI Food Safety",
   title: "AI Food Safety — Oziq-ovqat xavfsizligi AI portali",
   tagline: "Oziq-ovqat mahsulotlari xavfsizligining sun'iy intellekt portali",
-  url: "https://ai.karantin.uz",
+  url: "https://ai.food-safety.uz",
   org: "O'zbekiston Respublikasi Oziq-ovqat mahsulotlari xavfsizligi qo'mitasi",
   hotline: "1288",
   telegram: "https://t.me/uzdavkarantinuz",

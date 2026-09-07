@@ -320,7 +320,7 @@ export default function Page() {
         </div>
         <div className="footer__bottom">
           <span>© 2026 Oziq-ovqat mahsulotlari xavfsizligi qo'mitasi</span>
-          <span>ai.karantin.uz</span>
+          <span>{SITE.url.replace("https://", "")}</span>
         </div>
       </footer>
 
