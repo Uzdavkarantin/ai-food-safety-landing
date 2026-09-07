@@ -276,6 +276,7 @@ img {
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .header__actions {
@@ -1549,4 +1550,417 @@ img {
   margin-top: -4.5px;
   border-radius: 999px;
   background: var(--accent);
+}
+
+/* ================= Daladan dasturxongacha ================= */
+
+@keyframes om-scan {
+  0%,
+  100% {
+    transform: translateY(-42%);
+  }
+  50% {
+    transform: translateY(42%);
+  }
+}
+
+@keyframes om-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.06);
+  }
+}
+
+.header--sub .header__inner {
+  height: 68px;
+  gap: 16px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: border-color 0.25s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.journey__intro {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(56px, 10vw, 120px) 24px clamp(40px, 6vw, 72px);
+}
+
+.journey__title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 84px);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  margin: 16px 0 0;
+  max-width: 18ch;
+}
+
+.kicker--accent {
+  color: var(--accentText);
+}
+
+/* asosiy holat: JS yo'q / harakat cheklangan — oddiy ketma-ket bloklar */
+
+.journey {
+  position: relative;
+}
+
+.journey__mesh,
+.journey__apple {
+  display: none;
+}
+
+.scene {
+  position: relative;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) 24px;
+}
+
+.scene__inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+}
+
+.scene__card {
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 16px;
+  background: var(--navbg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh2);
+  max-width: 52ch;
+}
+
+.scene__title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 4.4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin: 14px 0 0;
+}
+
+.scene__text {
+  margin: 16px 0 0;
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.scene__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-self: end;
+  width: 100%;
+  max-width: 340px;
+}
+
+.datachip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh1);
+}
+
+.datachip__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+
+.datachip__dot--warn {
+  background: var(--gold);
+}
+
+.datachip__k {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.datachip__v {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.scanner,
+.rail {
+  display: none;
+}
+
+/* skroll effekti yoqilganda: yopishqoq sahna, ustma-ust qatlamlar */
+
+.journey[data-fx="on"] {
+  height: 460vh;
+}
+
+.journey[data-fx="on"] .journey__stage {
+  position: sticky;
+  top: 68px;
+  height: calc(100svh - 68px);
+  overflow: hidden;
+}
+
+.journey[data-fx="on"] .journey__mesh {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.journey[data-fx="on"] .journey__mesh svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.journey[data-fx="on"] .journey__apple {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(190px, 26vw, 330px);
+  height: clamp(190px, 26vw, 330px);
+  margin-left: -13vw;
+  margin-top: -13vw;
+  will-change: transform;
+}
+
+.journey[data-fx="on"] .scene {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  padding: clamp(20px, 4vw, 56px) 24px;
+  will-change: opacity, transform;
+}
+
+.journey[data-fx="on"] .scene__inner {
+  position: relative;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+.journey[data-fx="on"] .scanner {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(240px, 34vw, 440px);
+  height: clamp(240px, 34vw, 440px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.journey[data-fx="on"] .rail {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 24px 22px;
+  pointer-events: none;
+}
+
+.apple {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 0 26px var(--motifGlow));
+}
+
+.scanner__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  animation: om-pulse 3.6s ease-in-out infinite;
+}
+
+.scanner__dash {
+  position: absolute;
+  inset: 14%;
+  border-radius: 999px;
+  border: 1px dashed var(--line2);
+  animation: om-spin 34s linear infinite;
+}
+
+.scanner__beam {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 18px 2px var(--motifGlow);
+  animation: om-scan 3.2s ease-in-out infinite;
+}
+
+.rail__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.rail__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rail__bar {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--line2);
+}
+
+.rail__label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- yakuniy bo'lim ---------- */
+
+.outro {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 120px) 24px clamp(72px, 10vw, 130px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  align-items: end;
+}
+
+.outro__title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 14px 0 0;
+  max-width: 24ch;
+}
+
+.outro__text {
+  margin: 18px 0 28px;
+  max-width: 54ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.outro__list {
+  display: grid;
+  gap: 10px;
+}
+
+.outro__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh1);
+}
+
+.outro__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--accentText);
+  flex-shrink: 0;
+}
+
+.outro__name {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.outro__desc {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.outro__num {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.footer__bottom--flat {
+  padding: 28px 24px;
+  border-top: 0;
+}
+
+@media (max-width: 430px) {
+  .brand__name {
+    font-size: 17px;
+  }
+  .btn-ghost {
+    padding: 0 14px;
+    font-size: 14px;
+  }
+  .header--sub .header__inner {
+    gap: 10px;
+  }
 }

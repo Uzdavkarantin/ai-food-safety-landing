@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Chat from "@/components/Chat";
 import Header from "@/components/Header";
 import Icon from "@/components/Icon";
@@ -259,21 +260,24 @@ export default function Page() {
               Daladan dasturxongacha
             </h2>
           </div>
-          <div className="chain">
-            <div className="chain__steps">
+          <Link className="chain" href="/daladan-dasturxongacha">
+            <span className="chain__steps">
               {CHAIN_STEPS.map((p) => (
-                <div key={p.num} className="chain__step">
+                <span key={p.num} className="chain__step">
                   <span className="chain__icon">
                     <Icon name={p.icon} size={26} />
                   </span>
                   <span className="chain__num">{p.num}</span>
                   <span className="chain__name">{p.name}</span>
                   <span className="chain__desc">{p.desc}</span>
-                </div>
+                </span>
               ))}
-            </div>
-            <p className="chain__more">Mahsulotning to'liq nazorat zanjiri</p>
-          </div>
+            </span>
+            <span className="chain__more">
+              Sayohatni ko'rish
+              <Icon name="arrow" size={16} />
+            </span>
+          </Link>
         </section>
       </main>
 

@@ -321,3 +321,80 @@ export const SITE = {
   official: "https://gov.uz/oz/karantin",
   cabinet: "https://cabinet.karantin.uz",
 };
+
+/* ---------- "Daladan dasturxongacha" sayohati ---------- */
+
+export type Chip = { k: string; v: string; tone: "ok" | "warn" };
+
+export type Scene = {
+  num: string;
+  stage: string;
+  title: string;
+  text: string;
+  chips: Chip[];
+  /** Ikkinchi sahnadagi laboratoriya skaneri kabi maxsus bezak */
+  effect?: "scanner";
+};
+
+export const JOURNEY: Scene[] = [
+  {
+    num: "01",
+    stage: "Dala",
+    title: "Hosil yig'iladi",
+    text:
+      "Fermer AI daftariga partiyani kiritadi: nav, maydon, ishlov va yig'im sanasi. " +
+      "Shu yerda olmaning raqamli pasporti boshlanadi.",
+    chips: [
+      { k: "Nav", v: "Golden", tone: "ok" },
+      { k: "Maydon", v: "4.2 ga", tone: "ok" },
+      { k: "Yig'im", v: "12.09.2026", tone: "ok" },
+    ],
+  },
+  {
+    num: "02",
+    stage: "Laboratoriya",
+    title: "Namuna tekshiriladi",
+    text:
+      "Pestitsid qoldiqlari, MRL chegaralari va patogenlar tahlil qilinadi. " +
+      "AI natijalarni Codex normalari bilan bir zumda solishtiradi.",
+    effect: "scanner",
+    chips: [
+      { k: "MRL", v: "normada", tone: "ok" },
+      { k: "Pestitsid", v: "0.01 mg/kg", tone: "warn" },
+      { k: "Patogen", v: "aniqlanmadi", tone: "ok" },
+    ],
+  },
+  {
+    num: "03",
+    stage: "Chegara",
+    title: "Eksportga tayyor",
+    text:
+      "Partiya hujjatlari avtomatik shakllanadi, rad etilish xavfi baholanadi. " +
+      "Bojxona rasmiylashtiruvi kunlar emas, soatlar ichida.",
+    chips: [
+      { k: "Codex", v: "mos", tone: "ok" },
+      { k: "Rad xavfi", v: "4 %", tone: "warn" },
+      { k: "Hujjat", v: "2 kun", tone: "ok" },
+    ],
+  },
+  {
+    num: "04",
+    stage: "Bozor",
+    title: "Dasturxonda",
+    text:
+      "Har bir partiya yagona bazada saqlanadi. Xaridor QR orqali olmaning butun yo'lini — " +
+      "daladan dasturxongacha — ko'radi.",
+    chips: [
+      { k: "QR", v: "faol", tone: "ok" },
+      { k: "Zanjir", v: "4 bosqich", tone: "ok" },
+      { k: "Nazorat", v: "real vaqt", tone: "ok" },
+    ],
+  },
+];
+
+export const JOURNEY_SUMMARY = [
+  { num: "01", name: "Dala", desc: "Partiya raqamli pasporti ochiladi", icon: "sprout" },
+  { num: "02", name: "Laboratoriya", desc: "MRL va patogen tahlili", icon: "flask" },
+  { num: "03", name: "Chegara", desc: "Codex moslik va rad xavfi bali", icon: "shield" },
+  { num: "04", name: "Bozor", desc: "QR orqali ochiq kuzatuv", icon: "store" },
+];
