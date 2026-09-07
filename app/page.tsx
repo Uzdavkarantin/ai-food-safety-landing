@@ -291,21 +291,6 @@ export default function Page() {
               <span className="footer__name">AI Food Safety</span>
             </div>
             <p className="footer__text">{SITE.org} — sun'iy intellekt portali.</p>
-            <ul className="footer__links">
-              <li>
-                <a href={`tel:${SITE.hotline}`}>Ishonch telefoni: {SITE.hotline}</a>
-              </li>
-              <li>
-                <a href={SITE.official} rel="noopener">
-                  Rasmiy sahifa: gov.uz/oz/karantin
-                </a>
-              </li>
-              <li>
-                <a href={SITE.cabinet} rel="noopener">
-                  cabinet.karantin.uz
-                </a>
-              </li>
-            </ul>
           </div>
           <div className="footer__social">
             <div className="kicker">Ijtimoiy tarmoqlar</div>
