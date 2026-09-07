@@ -85,10 +85,6 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <a className="skip-link" href="#xizmatlar">
-        Asosiy mazmunga o'tish
-      </a>
-
       <Header />
 
       <main id="top">
