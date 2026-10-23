@@ -5,4 +5,6 @@ export const routing = defineRouting({
   locales,
   defaultLocale,
   localePrefix: "always",
+  // `/` always opens Uzbek; the browser language and locale cookie are ignored.
+  localeDetection: false,
 });

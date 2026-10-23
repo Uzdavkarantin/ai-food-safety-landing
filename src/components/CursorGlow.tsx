@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-// Site-wide mouse tracker: a soft spotlight and a ring that follow the cursor
-// over every section. Variables are written on the two overlay elements only,
-// once per animation frame. Off for touch input and reduced motion.
+// Home page mouse tracker: a soft spotlight and a ring that follow the cursor
+// over every section; service pages go without it. Variables are written on
+// the two overlay elements only, once per animation frame. Off for touch input
+// and reduced motion.
 export function CursorGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);

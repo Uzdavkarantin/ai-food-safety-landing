@@ -50,7 +50,7 @@ test("reduced motion stops every animated class", () => {
   }
 });
 
-test("site-wide cursor overlay never blocks clicks", () => {
+test("cursor overlay never blocks clicks", () => {
   for (const selector of [".cursor-glow {", ".cursor-dot {"]) {
     const body = block(selector);
     assert.match(body, /position:\s*fixed/, `${selector} is fixed to the viewport`);
@@ -67,4 +67,13 @@ test("journey scroll animations only run where view timelines are supported", ()
   const start = css.indexOf(supports);
   const outside = css.slice(0, start) + css.slice(start + supports.length + body.length + 2);
   assert.doesNotMatch(outside, /animation-timeline/, "no view timeline outside @supports");
+});
+
+test("cursor tracker is mounted on the home page only, not on service pages", () => {
+  const read = (path) => readFileSync(new URL(path, src), "utf8");
+  assert.match(read("app/[locale]/page.tsx"), /<CursorGlow \/>/, "home page renders the tracker");
+  for (const path of ["app/[locale]/layout.tsx", "app/[locale]/xizmatlar/[slug]/page.tsx",
+    "components/service/ServicePage.tsx"]) {
+    assert.doesNotMatch(read(path), /CursorGlow/, `${path} must not render the tracker`);
+  }
 });

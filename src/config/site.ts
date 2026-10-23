@@ -10,8 +10,7 @@ export const siteConfig = {
   url: resolveUrl(),
   cabinetUrl: "https://cabinet.karantin.uz",
   hotline: "1288",
-  contactEmail: "info@food-safety.uz", // TODO(content): real address
-  contactPhone: "+998 71 000 00 00", // TODO(content): real phone
+  contactPhone: "+998 71 202 84 84",
   laws: [
     { href: "https://lex.uz/docs/-7789403" },
     { href: "https://lex.uz/docs/-7158604" },
@@ -33,3 +32,14 @@ export const siteConfig = {
 export const locales = ["uz", "ru", "en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "uz";
+
+// Open Graph wants language_TERRITORY.
+export const ogLocales: Record<Locale, string> = { uz: "uz_UZ", ru: "ru_RU", en: "en_US" };
+
+// hreflang links for a path ("" for the home page); Uzbek is the x-default.
+export function languageAlternates(path: string): Record<string, string> {
+  return Object.fromEntries([
+    ...locales.map((l) => [l, `${siteConfig.url}/${l}${path}`]),
+    ["x-default", `${siteConfig.url}/${defaultLocale}${path}`],
+  ]);
+}

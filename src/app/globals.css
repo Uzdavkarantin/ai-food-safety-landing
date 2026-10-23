@@ -264,7 +264,7 @@
   background: var(--gold-strong);
   box-shadow: 0 0 16px var(--gold-strong);
 }
-/* --- site-wide mouse tracker: soft spotlight + ring (CursorGlow.tsx) --- */
+/* --- home page mouse tracker: soft spotlight + ring (CursorGlow.tsx) --- */
 .cursor-glow {
   position: fixed;
   inset: 0;
