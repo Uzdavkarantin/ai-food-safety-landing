@@ -1,42 +1,37 @@
 # AI Food Safety — `ai.food-safety.uz`
 
-Oziq-ovqat mahsulotlari xavfsizligi qo'mitasining sun'iy intellekt portali uchun
-bosh sahifa. Claude Design'dagi `AI Xavfsizlik Landing.dc.html` maketi Next.js
-(App Router, TypeScript) ilovasi sifatida qayta yozilgan.
+Oziq-ovqat mahsulotlari xavfsizligi qo'mitasining sun'iy intellekt portali:
+bosh sahifa va 12 ta AI xizmat sahifasi (namuna ma'lumotlar bilan).
+Next.js 16 (App Router) · next-intl (UZ/RU/EN) · Tailwind v4 · next-themes (yorug'/tungi).
 
 ## Ishga tushirish
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # ishlab chiqarish uchun yig'ish
-npm start        # yig'ilgan versiyani ishga tushirish
-npm run typecheck
+pnpm install
+pnpm dev         # http://localhost:3000
+pnpm test        # node:test — tarjimalar, xizmatlar, uslub qoidalari
+pnpm lint
+pnpm build       # 39 ta statik sahifa (3 til × (bosh sahifa + 12 xizmat))
+pnpm start
 ```
+
+Sayt manzili `NEXT_PUBLIC_SITE_URL` orqali beriladi; berilmasa
+`https://ai.food-safety.uz` ishlatiladi (`src/config/site.ts`).
 
 ## Tuzilma
 
 | Yo'l | Mazmuni |
 |------|---------|
-| `app/layout.tsx` | Shriftlar, SEO metama'lumotlari, mavzu skripti |
-| `app/page.tsx` | Bosh sahifa: hero, xizmatlar, infratuzilma, raqamlar, zanjir, futer, JSON-LD |
-| `app/globals.css` | Dizayn tokenlari (light/dark), animatsiyalar, barcha komponent uslublari |
-| `lib/data.ts` | 13 ta AI xizmat, infratuzilma, statistika, zanjir bosqichlari, hero geometriyasi |
-| `components/` | Header, Services (+modal), Stats, Chat, Motif, Icon, PointerFX, Reveal |
-| `public/assets/` | Qo'mita gerbi va Agro AI avatari |
-| `docs/` | Tadqiqot materiallari (qo'mita tahlili, xizmatlar portfeli, chet el tajribasi) |
+| `src/app/[locale]/page.tsx` | Bosh sahifa: hero, xizmatlar, texnologiyalar, raqamlar, "Daladan dasturxongacha" |
+| `src/app/[locale]/xizmatlar/[slug]/page.tsx` | 12 ta xizmat sahifasi (`dynamicParams = false`, noma'lum slug → 404) |
+| `src/components/home/` | Bosh sahifa bo'limlari |
+| `src/components/service/` | Xizmat sahifasi shabloni, demo forma, natija bloklari, jonli kamera |
+| `src/config/services.ts` | Xizmatlar tartibi, ranglar, bog'liq xizmatlar, zanjir bosqichlari |
+| `src/messages/{uz,ru,en}/` | Barcha matnlar va namuna ma'lumotlar (`common`, `home`, `services`) |
+| `src/app/globals.css` | Dizayn tokenlari (yorug'/tungi), animatsiyalar |
+| `public/images/journey/` | "Daladan dasturxongacha" rasmlari (Gemini) |
+| `public/videos/` | AI Oshxona jonli kamera videosi (Gemini) |
+| `tests/` | `node --test` testlari |
+| `docs/` | Tadqiqot materiallari va dizayn hujjatlari (`docs/superpowers/`) |
 
-## SEO
-
-- Butun kontent server tomonida chiziladi (`next build` — barcha sahifalar statik).
-- `schema.org` JSON-LD: `GovernmentOrganization`, `WebSite`, 13 ta `Service` dan iborat `ItemList`.
-- `app/sitemap.ts`, `app/robots.ts`, `app/opengraph-image.tsx` (1200×630 OG rasm).
-- `lang="uz"`, kanonik URL, OpenGraph/Twitter kartalari, `themeColor` (light/dark).
-
-## Eslatmalar
-
-- Chat oynasidagi javoblar hozircha kalit so'zlarga asoslangan demo
-  (`components/Chat.tsx` → `aiReply`). Haqiqiy Oziq-ovqat LLM ulanganda shu
-  funksiya API chaqiruviga almashtiriladi.
-- Mavzu (light/dark) `localStorage` da saqlanadi, boshlang'ich qiymat tizim
-  sozlamasidan olinadi — sahifa chizilishida "oq chaqnash" bo'lmaydi.
+Eski `/daladan-dasturxongacha` havolasi bosh sahifadagi `#zanjir` bo'limiga yo'naltiriladi.
