@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales, siteConfig } from "@/config/site";
+import { languageAlternates, locales, siteConfig } from "@/config/site";
 import { serviceSlugs } from "@/config/services";
 
 const paths = ["", ...serviceSlugs.map((slug) => `/xizmatlar/${slug}`)];
@@ -12,11 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: path === "" ? 1 : 0.7,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `${siteConfig.url}/${l}${path}`]),
-        ),
-      },
+      alternates: { languages: languageAlternates(path) },
     })),
   );
 }

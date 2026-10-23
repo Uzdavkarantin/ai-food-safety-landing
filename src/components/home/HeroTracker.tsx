@@ -3,7 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 
 // Tilts the hero card toward the cursor (±16°). The spotlight and cursor ring
-// are site-wide (CursorGlow). Writes CSS variables only, never re-renders.
+// cover the whole home page (CursorGlow). Writes CSS variables only, never re-renders.
 // Disabled on touch-only devices and when reduced motion is requested.
 export function HeroTracker({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLElement>(null);

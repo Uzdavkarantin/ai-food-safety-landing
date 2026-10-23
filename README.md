@@ -9,9 +9,10 @@ Next.js 16 (App Router) · next-intl (UZ/RU/EN) · Tailwind v4 · next-themes (y
 ```bash
 pnpm install
 pnpm dev         # http://localhost:3000
-pnpm test        # node:test — tarjimalar, xizmatlar, uslub qoidalari
+pnpm test        # node:test — tarjimalar, xizmatlar, uslub qoidalari, SEO
+                 # (SEO teglari testlari `pnpm build` dan keyin ishlaydi)
 pnpm lint
-pnpm build       # 39 ta statik sahifa (3 til × (bosh sahifa + 12 xizmat))
+pnpm build       # 39 ta statik sahifa (3 til × (bosh sahifa + 12 xizmat)) + 39 ta ulashish rasmi
 pnpm start
 ```
 

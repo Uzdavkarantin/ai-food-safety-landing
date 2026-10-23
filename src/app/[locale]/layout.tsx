@@ -10,12 +10,13 @@ import {
 } from "next-intl/server";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { routing } from "@/i18n/routing";
-import { locales, siteConfig, type Locale } from "@/config/site";
+import { locales, ogLocales, siteConfig, type Locale } from "@/config/site";
+import { organizationId } from "@/config/metadata";
 import { Providers } from "@/components/Providers";
 import { NoticeBar } from "@/components/NoticeBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { CursorGlow } from "@/components/CursorGlow";
+import { JsonLd } from "@/components/JsonLd";
 import "../globals.css";
 
 // Plus Jakarta Sans has no basic Cyrillic subset; Russian headings fall back to Inter.
@@ -50,28 +51,19 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "home.hero" });
   const s = await getTranslations({ locale, namespace: "site" });
 
-  const languages = Object.fromEntries(
-    locales.map((l) => [l, `${siteConfig.url}/${l}`]),
-  );
-
+  // Fallbacks for pages without their own metadata (404); the home and service
+  // pages set canonical, hreflang and share tags through pageMetadata().
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
       default: s("name"),
-      template: "%s — ai.food-safety.uz",
+      template: `%s — ${s("name")}`,
     },
     description: t("lead"),
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}`,
-      languages,
-    },
     openGraph: {
       type: "website",
       siteName: s("name"),
-      title: s("name"),
-      description: t("lead"),
-      url: `${siteConfig.url}/${locale}`,
-      locale,
+      locale: ogLocales[locale as Locale],
     },
     twitter: { card: "summary_large_image" },
   };
@@ -85,14 +77,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
   const t = await getTranslations({ locale, namespace: "site" });
 
-  const jsonLd = {
+  const organization = {
     "@context": "https://schema.org",
     "@type": "GovernmentOrganization",
+    "@id": organizationId,
     name: t("name"),
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.jpg`,
-    email: siteConfig.contactEmail,
     telephone: siteConfig.contactPhone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: siteConfig.hotline,
+      contactType: "customer service",
+      areaServed: "UZ",
+    },
     areaServed: "UZ",
     sameAs: Object.values(siteConfig.social),
   };
@@ -118,16 +116,10 @@ export default async function LocaleLayout({ children, params }: Props) {
               {children}
             </main>
             <Footer />
-            <CursorGlow />
             <Analytics />
           </NextIntlClientProvider>
         </Providers>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={organization} />
       </body>
     </html>
   );
